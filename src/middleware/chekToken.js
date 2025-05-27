@@ -2,7 +2,7 @@ import { StaffModel } from "../module/staffs.module.js"
 import { CustomError } from "../utils/CustomError.js"
 import jwt from "../utils/jwt.js"
 
-export default async (err, req, res, next)  => {
+export default async (req, res, next)  => {
     try {
         const { token } = req.headers
         if(!token) throw new CustomError(404, 'token is require !')
@@ -11,8 +11,8 @@ export default async (err, req, res, next)  => {
         const  staff = await StaffModel.findById(id)
 
         if(!staff) throw new CustomError(404, 'User not found !')
-        
-        if(req.ip != userIp || req.headres['user-agent'] != userAgent) throw new CustomError(400,'Invalid token')
+        console.log(req.ip, userIp, req.headers['user-agent'], userAgent)
+        if(req.ip != userIp || req.headers['user-agent'] != userAgent) throw new CustomError(400,'Invalid token')
 
         req.staff = staff
         next()

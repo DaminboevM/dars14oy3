@@ -14,12 +14,13 @@ const logger = winston.createLogger({
 
 
 const errorHandler = (error, req, res, next) => {
-  if (error.status && error.status < 500) {
-    return res.status(error.status).json({ message: error.message })
-  } else {
-    logger.error(error.message || "Internal server error")
-    return res.status(500).json({ message: "Internal server error" })
-  }
+    const status = error.status || 500
+
+    if (status === 500) logger.error(`${error.message || "Internal server error"} - ${error.stack || ""}`)
+
+    return res.status(status).json({message: error.message || "Internal server error"
+
+    })
 }
 
 export default errorHandler

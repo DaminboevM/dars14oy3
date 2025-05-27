@@ -3,16 +3,17 @@ import { AdminPermissionValidation } from "../../validation/AdminPermission.vali
 
 export default async (req, res, next) => {
     try {
-        if(req.method == 'POST' && req.url == '/v1/api/admin/permission/create') {
-            const { error } = await AdminPermissionValidation.createSchema.validate(req.body)
+        if(req.method == 'POST' && req.originalUrl == '/v1/api/admin/permission/add') {
+            const { error } = await AdminPermissionValidation.CreateSchema.validate(req.body)
             if(error) throw new CustomError(403, error.details[0].message)
         }
         
         
-        if(req.method == 'PUT' && req.url == '/v1/api/admin/permission/update') {
-            const { error } = await AdminPermissionValidation.changeSchema.validate(req.body)
+        if(req.method == 'PUT' && req.originalUrl.startsWith('/v1/api/admin/permission/update')) {
+            const { error } = await AdminPermissionValidation.ChangeSchema.validate(req.body)
             if(error) throw new CustomError(403, error.details[0].message)
         }
+        next()
     } catch (error) {
         next(error)
     }
