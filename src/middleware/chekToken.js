@@ -17,8 +17,8 @@ export default async (req, res, next)  => {
         req.staff = staff
         next()
     } catch (error) {
-        if(error.name == 'TokenExpiredError') next(new CustomError(400, 'Token expire !'))
-        if(error.name == 'JsonWebTokenError') next(new CustomError(400, 'Invalid token !'))
-        next(error)
+        if(error.name == 'TokenExpiredError') return next(new CustomError(400, 'Token expire !'))
+        if(error.name == 'JsonWebTokenError') return next(new CustomError(400, 'Invalid token !'))
+        return next(error)
     }
 }
