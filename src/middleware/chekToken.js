@@ -11,7 +11,6 @@ export default async (req, res, next)  => {
         const  staff = await StaffModel.findById(id)
 
         if(!staff) throw new CustomError(404, 'User not found !')
-        console.log(req.ip, userIp, req.headers['user-agent'], userAgent)
         if(req.ip != userIp || req.headers['user-agent'] != userAgent) throw new CustomError(400,'Invalid token')
 
         req.staff = staff
