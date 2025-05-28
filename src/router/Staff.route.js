@@ -13,7 +13,7 @@ StaffRouter.post('/register',validate, staffController.Register)
 StaffRouter.get('/verify', staffController.Verify)
 StaffRouter.post('/login',validate, staffController.Login)
 StaffRouter.put('/update',validate, chekToken, permission, staffController.UpdateStaff)
-StaffRouter.delete('/delete/:id',validate, chekToken, permission, staffController.RemoveStaff)
+StaffRouter.delete('/:id',validate, chekToken, permission, staffController.RemoveStaff)
 
 
 export default StaffRouter

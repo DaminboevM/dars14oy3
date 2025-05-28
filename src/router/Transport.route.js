@@ -10,7 +10,7 @@ const TransportRouter = Router()
 TransportRouter.get('/single/:branch_id', chekToken, permission, transportController.GetTransport)
 TransportRouter.post('/add',validate, chekToken, permission, transportController.CreateTransport)
 TransportRouter.put('/update',validate, chekToken, permission, transportController.UpdateTransport)
-TransportRouter.delete('/delete/:id',validate, chekToken, permission, transportController.RemoveTransport)
+TransportRouter.delete('/:id',validate, chekToken, permission, transportController.RemoveTransport)
 
 
 export default TransportRouter

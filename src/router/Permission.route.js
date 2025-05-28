@@ -11,7 +11,7 @@ PermissionRouter.get('/all', chekToken, permission,permissionController.GetAllPe
 PermissionRouter.get('/single', chekToken, permission,permissionController.GetOnePermission)
 PermissionRouter.post('/add',validate, chekToken, permission,permissionController.CreatePermission)
 PermissionRouter.put('/update',validate, chekToken, permissionController.UpdatePermission)
-PermissionRouter.delete('/delete/:id',validate, chekToken, permission,permissionController.RemovePermission)
+PermissionRouter.delete('/:id',validate, chekToken, permission,permissionController.RemovePermission)
 
 
 export default PermissionRouter
