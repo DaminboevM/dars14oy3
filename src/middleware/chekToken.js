@@ -20,4 +20,4 @@ export default async (req, res, next)  => {
         if(error.name == 'JsonWebTokenError') return next(new CustomError(400, 'Invalid token !'))
         return next(error)
     }
-}
+} 
