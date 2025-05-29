@@ -27,7 +27,7 @@ export class PermissionService {
     
     
     static async DeletePermission (id) {
-        await PermissionModel.findById(id)
+        await PermissionModel.findByIdAndDelete(id)
         return {status: 201, messagae: 'Permission success Deleted !', data: null, seccess: true}
     }
 }
